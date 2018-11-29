@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CurrencyRater</string>
+	<string name="my_rates">Мои курсы</string>
+	<string name="converter">Конвертер</string>
+	<string name="exit">Выход</string>
+	<string name="rate_format">%.4f</string>
 </resources>
