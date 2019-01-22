@@ -6,10 +6,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sanik.currencyrater.R
-import com.sanik.currencyrater.databinding.FavouritesFragmentBinding
-import com.sanik.currencyrater.db.data.CurrencyRateWithRateAndDate
+import com.sanik.currencyrater.databinding.FavouritesListItemBinding
+import com.sanik.currencyrater.db.data.CurrencyRateChange
+import com.sanik.currencyrater.viewmodels.CurrencyRateChangeViewModel
 
-class FavouriteRatesAdapter : ListAdapter<CurrencyRateWithRateAndDate, FavouriteRatesAdapter.ViewHolder>(FavouriteRatesDiffCallback()) {
+class FavouriteRatesAdapter : ListAdapter<CurrencyRateChange, FavouriteRatesAdapter.ViewHolder>(FavouriteRatesDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             DataBindingUtil.inflate(
@@ -21,15 +22,19 @@ class FavouriteRatesAdapter : ListAdapter<CurrencyRateWithRateAndDate, Favourite
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         getItem(position).let {
-            //holder.
+            holder.bind(it)
         }
     }
 
     class ViewHolder(
-        private val binding: FavouritesFragmentBinding
+        private val binding: FavouritesListItemBinding
     ) : RecyclerView.ViewHolder(binding.root){
-        fun bind(){
-
+        fun bind(currencyRateChange: CurrencyRateChange) {
+            binding.viewModel = CurrencyRateChangeViewModel(
+                itemView.context,
+                currencyRateChange
+            )
+            binding.executePendingBindings()
         }
     }
 }

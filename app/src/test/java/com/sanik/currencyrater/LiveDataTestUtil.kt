@@ -1,4 +1,4 @@
-package com.sanik.currencyrater.utils
+package com.sanik.currencyrater
 
 import androidx.lifecycle.LiveData
 import java.util.concurrent.CountDownLatch
